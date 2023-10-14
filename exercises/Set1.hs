@@ -68,7 +68,8 @@ distance x1 y1 x2 y2 = sqrt(xDist*xDist + yDist*yDist)
 -- Ps. have a look at the built in function "even"
 
 eeny :: Integer -> String
-eeny = todo
+
+eeny n = if even n then "eeny" else "meeny" 
 
 ------------------------------------------------------------------------------
 -- Ex 6: here's the function checkPassword from the course material.
