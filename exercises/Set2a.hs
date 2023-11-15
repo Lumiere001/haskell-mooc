@@ -75,7 +75,7 @@ substring i j s = drop i (take j s)
 --   isPalindrome "AB"       ==>  False
 
 isPalindrome :: String -> Bool
-isPalindrome str = if reverse str == str then True else False
+isPalindrome str = reverse str == str
 
 ------------------------------------------------------------------------------
 -- Ex 6: implement the function palindromify that chops a character
@@ -130,7 +130,7 @@ greet first last = "Hello, " ++ first ++ maybe "" (' ':) last ++ "!"
 --   safeIndex ["a","b","c"] (-1)  ==> Nothing
 
 safeIndex :: [a] -> Int -> Maybe a
-safeIndex xs i = todo
+safeIndex xs i = if length xs < i + 1 || i < 0 then Nothing else Just (xs !! i)
 
 ------------------------------------------------------------------------------
 -- Ex 10: another variant of safe division. This time you should use
