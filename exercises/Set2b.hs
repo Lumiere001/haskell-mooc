@@ -124,7 +124,12 @@ countdownHelper n = show n ++ "... " ++ countdownHelper (n - 1)
 -- Hint: remember the mod function!
 
 smallestDivisor :: Integer -> Integer
-smallestDivisor = todo
+smallestDivisor n = smallestDivisorHelper n 2
+
+smallestDivisorHelper :: Integer -> Integer -> Integer
+smallestDivisorHelper n k
+  | n `mod` k == 0 = k
+  | otherwise      = smallestDivisorHelper n (k + 1)
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement a function isPrime that checks if the given number
