@@ -306,4 +306,14 @@ multiApp f gs x = f ( applyFunctions gs x )
 -- function, the surprise won't work. See section 3.8 in the material.
 
 interpreter :: [String] -> [String]
-interpreter commands = todo
+interpreter commands = interpreterHelper 0 0 commands
+  where
+    interpreterHelper x y [] = []
+    interpreterHelper x y (command:commands) =
+      case command of
+        "up"     -> interpreterHelper x (y+1) commands
+        "down"   -> interpreterHelper x (y-1) commands
+        "left"   -> interpreterHelper (x-1) y commands
+        "right"  -> interpreterHelper (x+1) y commands
+        "printX" -> show x : interpreterHelper x y commands
+        "printY" -> show y : interpreterHelper x y commands
