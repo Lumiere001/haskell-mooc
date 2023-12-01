@@ -112,7 +112,10 @@ indexDefault xs i def = case (xs, i) of
 --   sorted [7,2,7] ==> False
 
 sorted :: [Int] -> Bool
-sorted xs = todo
+sorted xs = case xs of
+                [] -> True
+                [x] -> True
+                (x:y:rest) -> x <= y && sorted (y:rest)
 
 ------------------------------------------------------------------------------
 -- Ex 6: compute the partial sums of the given list like this:
