@@ -127,7 +127,10 @@ sorted xs = case xs of
 -- Use pattern matching and recursion (and the list constructors : and [])
 
 sumsOf :: [Int] -> [Int]
-sumsOf xs = todo
+sumsOf xs = helper xs 0
+    where
+        helper [] _ = []
+        helper (x:rest) sum = (sum + x) : helper rest (sum + x)
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement the function merge that merges two sorted lists of
