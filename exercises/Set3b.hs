@@ -72,7 +72,10 @@ sums i = helper 1 0
 --   mylast 0 [1,2,3] ==> 3
 
 mylast :: a -> [a] -> a
-mylast def xs = todo
+mylast def xs = case xs of
+                    [] -> def
+                    [x] -> x
+                    (_:rest) -> mylast def rest
 
 ------------------------------------------------------------------------------
 -- Ex 4: safe list indexing. Define a function indexDefault so that
