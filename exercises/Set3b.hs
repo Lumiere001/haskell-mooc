@@ -93,8 +93,11 @@ mylast def xs = case xs of
 --   indexDefault ["a","b","c"] (-1) "d" ==> "d"
 
 indexDefault :: [a] -> Int -> a -> a
-indexDefault xs i def = todo
-
+indexDefault xs i def = case (xs, i) of
+                            (_, n) | n < 0 -> def
+                            ([], _)        -> def
+                            (x:_, 0)       -> x
+                            (_:rest, n)    -> indexDefault rest (n - 1) def
 ------------------------------------------------------------------------------
 -- Ex 5: define a function that checks if the given list is in
 -- increasing order.
