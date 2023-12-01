@@ -143,7 +143,12 @@ sumsOf xs = helper xs 0
 --   merge [1,1,6] [1,2]   ==> [1,1,1,2,6]
 
 merge :: [Int] -> [Int] -> [Int]
-merge xs ys = todo
+merge xs ys = case (xs, ys) of
+                ([], ys) -> ys
+                (xs, []) -> xs
+                (x:xs', y:ys') -> if x < y 
+                                  then x : merge xs' (y:ys') 
+                                  else y : merge (x:xs') ys'
 
 ------------------------------------------------------------------------------
 -- Ex 8: compute the biggest element, using a comparison function
