@@ -267,7 +267,11 @@ multiCompose fs = foldr (.) id fs
 --   multiApp id [head, (!!2), last] "axbxc" ==> ['a','b','c'] i.e. "abc"
 --   multiApp sum [head, (!!2), last] [1,9,2,9,3] ==> 6
 
-multiApp = todo
+multiApp :: ([a] -> b) -> [c -> a] -> c -> b
+multiApp f gs x = f ( applyFunctions gs x )
+  where
+    applyFunctions [] _ = []
+    applyFunctions (g:gs') x' = g x' : applyFunctions gs' x'
 
 ------------------------------------------------------------------------------
 -- Ex 14: in this exercise you get to implement an interpreter for a
