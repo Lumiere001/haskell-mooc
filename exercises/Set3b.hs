@@ -172,7 +172,11 @@ merge xs ys = case (xs, ys) of
 --     ==> ("Mouse",8)
 
 mymaximum :: (a -> a -> Bool) -> a -> [a] -> a
-mymaximum bigger initial xs = todo
+mymaximum bigger initial xs = case xs of
+                                [] -> initial
+                                (x:rest) -> if bigger x initial
+                                            then mymaximum bigger x rest
+                                            else mymaximum bigger initial rest
 
 ------------------------------------------------------------------------------
 -- Ex 9: define a version of map that takes a two-argument function
