@@ -41,8 +41,8 @@ maxBy measure a b
 --   mapMaybe length (Just "abc") ==> Just 3
 
 mapMaybe :: (a -> b) -> Maybe a -> Maybe b
-mapMaybe f x = todo
-
+mapMaybe f (Just x) = Just (f x)
+mapMaybe _ Nothing  = Nothing
 ------------------------------------------------------------------------------
 -- Ex 3: implement the function mapMaybe2 that works like mapMaybe
 -- except it combines two Maybe values using a function of two
