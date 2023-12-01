@@ -120,7 +120,11 @@ capitalize = unwords . map capitalizeFirst . words
 --   * the function takeWhile
 
 powers :: Int -> Int -> [Int]
-powers k max = todo
+powers k max = helper 1
+  where
+    helper n
+      | n > max = []
+      | otherwise = n : helper (n * k)
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement a functional while loop. While should be a function
