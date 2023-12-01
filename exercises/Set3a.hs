@@ -78,9 +78,11 @@ mapMaybe2 _ _ _ = Nothing
 palindromeHalfs :: [String] -> [String]
 palindromeHalfs xs = map firstHalf (filter palindrome xs)
 
-firstHalf = todo
+firstHalf :: String -> String
+firstHalf s = take ((length s + 1) `div` 2) s
 
-palindrome = todo
+palindrome :: String -> Bool
+palindrome s = s == reverse s
 
 ------------------------------------------------------------------------------
 -- Ex 5: Implement a function capitalize that takes in a string and
