@@ -45,9 +45,19 @@ queryMode db = do
     numbers <- getNumbersFor db name
     putStrLn (show (length numbers) ++ " numbers:")
     mapM_ print numbers
-
+{-
 main :: IO ()
 main = do
+  db <- openDatabase
+  putStrLn "(a)dd or (q)uery?"
+  choice <- getLine
+  case choice of "a" -> addMode db
+                 "q" -> queryMode db
+                 _ -> return ()
+-}
+
+phonebookMain :: IO ()
+phonebookMain = do
   db <- openDatabase
   putStrLn "(a)dd or (q)uery?"
   choice <- getLine
