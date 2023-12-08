@@ -113,6 +113,12 @@ let2int c = ord c - ord 'a'
 propLet2Int :: Char -> Property
 propLet2Int c = forAll (elements ['a'..'z']) $ \c -> let2int c === ord c - ord 'a'
 
+-- quickcheck 테스트 결과
+{-
+ghci> quickCheck propLet2Int
++++ OK, passed 100 tests.
+-}
+
 -- ChatGPT 활용 코딩의 장단점
 {-
 let2int함수와 이 함수의 테스트 케이스를 만들기 위해서 #요청사항1,2만 제공하고 특별히 다른 것을 하지 않았다.
@@ -136,6 +142,12 @@ int2let n = chr (ord 'a' + n)
 -- quickcheck 테스트 케이스
 propInt2Let :: Int -> Property
 propInt2Let n = forAll (elements [0..25]) $ \n -> int2let n === chr (ord 'a' + n)
+
+-- quickcheck 테스트 결과
+{-
+ghci> quickCheck propInt2Let
++++ OK, passed 100 tests.
+-}
 
 -- ChatGPT 활용 코딩의 장단점
 {-
@@ -162,6 +174,12 @@ shift n c
 -- quickcheck 테스트 케이스
 propShift :: Int -> Char -> Property
 propShift n c = forAll (elements ['a'..'z']) $ \c -> shift n c === int2let ((let2int c + n) `mod` 26)
+
+-- quickcheck 테스트 결과
+{-
+ghci> quickCheck propShift
++++ OK, passed 100 tests.
+-}
 
 -- ChatGPT 활용 코딩의 장단점
 {-
@@ -191,9 +209,21 @@ decode n xs = [shift (-n) x | x <- xs]
 propEncode :: Int -> String -> Property
 propEncode n xs = forAll (listOf (elements ['a'..'z'])) $ \xs -> encode n xs === [shift n x | x <- xs]
 
+-- quickcheck 테스트 결과
+{-
+ghci> quickCheck propEncode
++++ OK, passed 100 tests.
+-}
+
 -- quickcheck 테스트 케이스(decode)
 propDecode :: Int -> String -> Property
 propDecode n xs = forAll (listOf (elements ['a'..'z'])) $ \xs -> decode n xs === [shift (-n) x | x <- xs]
+
+-- quickcheck 테스트 결과
+{-
+ghci> quickCheck propDecode
++++ OK, passed 100 tests.
+-}
 
 -- ChatGPT 활용 코딩의 장단점 + 마무리하며
 {-
